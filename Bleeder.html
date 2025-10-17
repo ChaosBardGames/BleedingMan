@@ -1,10 +1,27 @@
 <!DOCTYPE html>
   <html>
     <head>
+      
       <title>Bleeding Man</title>
+      
       <script>
         let BloodLeft = 60;
       </script>
-      <p>${BloodLeft}</p>
+      
     </head>
+    <body>
+      
+      <p id="Boom">Red</p>
+      
+      <button id="Breathe">Breathe</button>
+
+      <script>
+        const BloodUpdate = () => {
+          document.getElementById("Boom").innerHTML = `You have ${BloodLeft} blood left.`;
+        }
+
+        document.getElementById("Breathe").addEventListener("click", BloodUpdate);
+      </script>
+      
+    </body>
   </html>
