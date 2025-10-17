@@ -11,12 +11,13 @@
     </head>
     <body>
       
-      <p id="Boom">Red</p>
+      <p id="Boom">You have 60 blood left!</p>
       
       <button id="Breathe">Breathe</button>
 
       <script>
         const BloodUpdate = () => {
+          BloodLeft = BloodLeft - 1
           document.getElementById("Boom").innerHTML = `You have ${BloodLeft} blood left.`;
         }
 
