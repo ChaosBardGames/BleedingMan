@@ -4,16 +4,22 @@
       <title>Bleeding Man</title>
       <script>
         function StartRun(){
-          let BloodLeft = 60
-        function Timer(){ <!--Bleeding Timer Script-->
-        TimeLeft = BloodLeft - 1; <!--Decrements Counter By -1-->
+          let BloodLeft = 60;
+        function Timer(){             <!--Bleeding Timer Script-->
+        BloodLeft = BloodLeft - 1;     <!--Decrements Counter By -1-->
           }
-        document.getElementById("BleedTimer").innerHTML = `You have ${BloodLeft} seconds left.`;
       </script>
     </head>
     <body>
-      <h1>You are bleeding. Try to survive!</h1>
-      <p id="BleedTimer"></p>
-      <button onclick="(Timer)">Breathe</button>
+      <h1>You are bleeding. Try to survive!</h1>;
+      <p id="BleedTimer"></p>;        <!--Displays time left-->
+      <button id="Breathe">Breathe</button>;
+      <script>;
+      const BloodChecker = () => {
+        BloodLeft = BloodLeft - 1;
+        document.getElementById("BleedTimer").innerHTML = `You have ${BloodLeft} seconds left.`;
+      }
+        document.getElementById("Breathe").addEvenrtListener("click", constBlood);
+      </script>
     </body>
   </html>
