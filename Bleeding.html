@@ -4,13 +4,15 @@
       <title>Bleeding Man</title>
       <script>
         function Timer(){ <!--Bleeding Timer Script-->
-          let TimeLeft = 
-          document.getElementById("BleedTimer").innerHTML = 
+        TimeLeft = TimeLeft - 1;
+        const Timeout = TimeLeft
+        document.getElementById("BleedTimer") = Timeout
                         }
         setInterval(Timer, 1)
       </script>
     </head>
     <body>
+      let TimeLeft = 10000
       <h1>You are bleeding. Try to survive!</h1>
       <p id="BleedTimer"></p>
     </body>
