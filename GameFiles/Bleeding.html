@@ -8,13 +8,16 @@
       <script>
           let BloodLeft = 60;
           let BloodCost = 0;
-          let PrestigeCount = 0;
+          let Will = 0;
           let BloodDrain = 1;
           let SecondsLived = 0;
           let Bandages = 0;
-        function Launch() {
+          let TimesBreathed = 0;
+          let TimesBandaged = 0;
+        function Launch() { //Hides Bandage, Wake Up Neo and the Will counter//
           document.getElementById("Bandage").style.display = "none";
           document.getElementById("Prestige").style.display = "none";
+          document.getElementById("WillCounter").style.display = "none";
         }
         window.onload = Launch;
       </script>
@@ -26,26 +29,30 @@
     <body>
       
       <p id="BloodLeft">You have 60 blood left!</p>
-      <button id="Breathe">Breathe</button> <!--Breathing Button-->
+      <p id="WillCounter">You have 0 Will!</p>
+      <button id="Breathe" class="Button">Breathe</button> <!--Breathing Button-->
 
-      <button id="Bandage">Bandage your wounds</button> <!--Bandaging Wounds Button-->
+      <button id="Bandage" class="Button">Bandage your wounds</button> <!--Bandaging Wounds Button-->
 
-      <button id="Prestige">Wake up Neo</button> <!--Rebirth Button-->
+      <button id="Prestige" class="Button">Wake up Neo</button> <!--Rebirth Button-->
 
       <script>
         const BreatheBloodCost = () => { 
-          BloodCost = 1/BloodDrain; //The amount of blood lost while breathing//
-          SecondsLived = SecondsLived + 1;
+          BloodCost = (1 + TimesBreathed)/BloodDrain; //The amount of blood lost while breathing//
+          SecondsLived = SecondsLived + 5;
+          TimesBreathed = TimesBreathed + 1;
         }
 
         const BandagingBloodCost = () => {
-          BloodCost = 10/BloodDrain; //The amount of blood lost while bandaging
-          SecondsLived = SecondsLived + 5;
+          BloodCost = (10 * TimesBandaged)/BloodDrain; //The amount of blood lost while bandaging//
+          SecondsLived = SecondsLived + 10;
+          TimesBandaged = TimesBandaged + 1;
         }
         
         const BloodUpdate = () => {
           BloodLeft = BloodLeft - BloodCost; //Decrements Blood based on BloodCost//
-          document.getElementById("BloodLeft").innerHTML = `You have ${BloodLeft} blood left.`; //Changes the visible Blood value//
+          BloodLeft = BloodLeft.toFixed(2); //Rounds Blood to two decimal places//
+          document.getElementById("BloodLeft").innerHTML = `You have ${BloodLeft} Blood left.`; //Changes the visible Blood value//
           
           if (BloodLeft <= 0) { //if all Blood is gone//
             BloodLeft = 0;
@@ -58,21 +65,29 @@
 
         const Bandaging = () => {
           Bandages = Bandages + 1;
-          const BlDr = PrestigeCount + (Bandages / 3) + 1;
+          const BlDr = Will + (Bandages / 2) + 1;
           BloodDrain = BlDr.toFixed(2);
         }
 
         const Prestige = () => {
-          PrestigeCount = PrestigeCount + (SecondsLived / 60);
-          if (PrestigeCount >= 1) { //Gives upgrades based off prestige//
+          Will = Will + (SecondsLived / 60);
+          if (Will >= 1) { //Gives upgrades based off prestige//
             document.getElementById("Bandage").style.display = "block";
           }
-          BloodDrain = PrestigeCount.toFixed(2) + 1;
-          BloodLeft = 60;
+          BloodDrain = Will.toFixed(2) + 1; //Sets BloodDrain to its new value//
+          BloodLeft = 60;      //Resets variables//
           SecondsLived = 0;
           Bandages = 0;
-          document.getElementById("Breathe").style.display = "block";
+          TimesBreathed = 0;
+          TimesBandaged = 0;
+          document.getElementById("Breathe").style.display = "block"; //Shows Breathe//
           document.getElementById("Prestige").style.display = "none";
+        }
+
+        const Will = () => {
+          if (Will > 0) {
+            document.getElementById("WillCounter").style.display = "block";
+            document.getElementById("WillCounter").innerHTML = `You have ${WillCount} Will.`;
         }
 
         document.getElementById("Breathe").addEventListener("click", BreatheBloodCost); //Updates Blood Drain//
@@ -81,6 +96,8 @@
         document.getElementById("Bandage").addEventListener("click", BandagingBloodCost); //Updates Blood Drain//
         document.getElementById("Bandage").addEventListener("click", BloodUpdate); //Updates Blood Counter//
         document.getElementById("Bandage").addEventListener("click", Bandaging); //Updates Bandage #//
+        
+        document.getElementByClassName("Button").addEventListener("click", Will); //Updates Will Counter//
       </script>
       
     </body>
