@@ -6,13 +6,13 @@
       <title>Bleeding Man</title>
       
       <script>
-        function Launch() {
           let BloodLeft = 60;
           let BloodCost = 0;
           let PrestigeCount = 0;
           let BloodDrain = 1;
           let SecondsLived = 0;
           let Bandages = 0;
+        function Launch() {
           document.getElementById("Bandage").style.display = "none";
           document.getElementById("Prestige").style.display = "none";
         }
@@ -20,10 +20,13 @@
       </script>
       
     </head>
+
+
+    
     <body>
       
       <p id="BloodLeft">You have 60 blood left!</p>
-      
+      <p>You </p>
       <button id="Breathe">Breathe</button> <!--Breathing Button-->
 
       <button id="Bandage">Bandage your wounds</button> <!--Bandaging Wounds Button-->
@@ -46,6 +49,7 @@
           document.getElementById("BloodLeft").innerHTML = `You have ${BloodLeft} blood left.`; //Changes the visible Blood value//
           
           if (BloodLeft <= 0) { //if all Blood is gone//
+            BloodLeft = 0;
             document.getElementById("Breathe").style.display = "none";
             document.getElementById("BloodLeft").innerHTML = `You have ${BloodLeft} blood left. As such, your life has ended.`;
             document.getElementById("Prestige").style.display = "block";
