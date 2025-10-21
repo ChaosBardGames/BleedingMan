@@ -1,6 +1,6 @@
 @charset "UTF-8";
 button {
-  background-color: rgb(33, 33, 230);
+  color: rgb(33, 33, 230);
   border: 2px, solid;
   border-style: ridge;
   border-color: rgb(52, 52, 161);
