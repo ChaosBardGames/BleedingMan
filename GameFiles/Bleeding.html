@@ -15,13 +15,17 @@
           let BloodDrain = 1;
           let SecondsLived = 0;
           let TimesBreathed = 0;
-          let TimesFocused = 0;
+          let TimesLookedAround = 0;
+        
+          let TimesFocused = 0; //Initializes Focusing variables//
           let Focus = 0;
+        
         function Launch() { //Hides Bandage, Wake Up Neo and the Will counter//
           document.getElementById("Bandage").style.display = "none";
           document.getElementById("Prestige").style.display = "none";
           document.getElementById("WillCounter").style.display = "none";
           document.getElementById("Focus").style.display = "none";
+          document.getElementById("LookAround").style.display = "none";
         }
         window.onload = Launch;
       </script>
@@ -42,6 +46,8 @@
 
       <button id="Focus" class="Button BloodSucker">Focus</button> <!--Focus Button-->
 
+      <button id="LookAround" class="Button BloodSucker">Look Around</button> <!--Looking Around Button-->
+
       <script>
         const BreatheBloodCost = () => { 
           BloodCost = (1 + TimesBreathed)/BloodDrain; //The amount of blood lost while breathing//
@@ -56,9 +62,15 @@
         }
 
         const FocusBloodCost = () => {
-          BloodCost = (15 + (TimesFocused * 5)) / (BloodDrain * 2);
+          BloodCost = (15 + (TimesFocused * 5)) / (BloodDrain / 2);
           SecondsLived = SecondsLived + 5;
           TimesFocused = TimesFocused + 1;
+        }
+
+        const LookingAroundBloodCost = () => {
+          BloodCost = (20 + (TimesLookedAround * 15)) / (BloodDrain / 10);
+          SecondsLived = SecondsLived + 20;
+          TimesLookedAround = TimesLookedAround + 1;
         }
         
         const BloodUpdate = () => {
@@ -72,6 +84,8 @@
             document.getElementById("BloodLeft").innerHTML = `You have ${BloodLeft} blood left. As such, your life has ended.`;
             document.getElementById("Prestige").style.display = "block";
             document.getElementById("Bandage").style.display = "none";
+            document.getElementById("Focus").style.display = "none";
+            document.getElementById("LookAround").style.displat = "none";
           }
         }
 
@@ -93,6 +107,9 @@
           if (Will >= 10) { //Unlocks focus//
             document.getElementById("Focus").style.display = "block";
           }
+          if (Focus > 9) {
+            document.getElementById("LookAround").style.display = "block";
+          }
           BloodDrain = Will.toFixed(2) + 1; //Sets BloodDrain to its new value//
           BloodLeft = 60;      //Resets variables//
           SecondsLived = 0;
@@ -108,12 +125,18 @@
           if (Will > 0) {
             document.getElementById("WillCounter").style.display = "block";
             document.getElementById("WillCounter").innerHTML = `You have ${WillCount} Will.`;
+          }
+          if (Focus > 9) {
+            document.getElementById("LookAround").style.disply = "block";
+          }
         }
 
         document.getElementById("Focus").addEventListener("click", FocusBloodCost); //Updates Blood Drain//
         document.getElementById("Breathe").addEventListener("click", BreatheBloodCost); //Updates Blood Drain//
-        document.getElementById("Prestige").addEventListener("click", Prestige); //Prestiges//
         document.getElementById("Bandage").addEventListener("click", BandagingBloodCost); //Updates Blood Drain//
+        document.getElementById("LookAround").addEventListener("click", LookingAroundBloodCost); //Updates Blood Drain//
+
+        document.getElementById("Prestige").addEventListener("click", Prestige); //Prestiges//
         
         document.getElementById("Bandage").addEventListener("click", Bandaging); //Updates Bandage #//
         document.getElementById("Focus").addEventListener("click", Focusing): //Updates Focus #//
