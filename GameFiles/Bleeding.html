@@ -6,14 +6,17 @@
       <title>Bleeding Man</title>
       
       <script>
-        let BloodLeft = 60;
-        let BloodCost = 0;
-        let PrestigeCount = 0;
-        let BloodDrain = PrestigeCount + 1;
-        let SecondsLived = 0;
-        let Bandages = 0;
-        document.getElementById("Bandage").style.display = "none";
-        document.getElementById("Prestige").style.display = "none";
+        function Launch() {
+          let BloodLeft = 60;
+          let BloodCost = 0;
+          let PrestigeCount = 0;
+          let BloodDrain = PrestigeCount + 1;
+          let SecondsLived = 0;
+          let Bandages = 0;
+          document.getElementById("Bandage").style.display = "none";
+          document.getElementById("Prestige").style.display = "none";
+        }
+        window.onload = Launch;
       </script>
       
     </head>
