@@ -1,4 +1,4 @@
-.button {
+button {
   background-colour: rgb(255, 56, 0);
   border-style: ridge;
   border-colour: rgb(255, 19, 0);
@@ -10,4 +10,12 @@
   font-size: 16px;
   cursor: help;
   text-color: rgb(242, 197, 16);
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  overflow - x: hidden;
+  height: 100%
 }
