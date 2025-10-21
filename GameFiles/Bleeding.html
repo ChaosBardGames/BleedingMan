@@ -12,10 +12,8 @@
         let BloodDrain = PrestigeCount + 1;
         let SecondsLived = 0;
         let Bandages = 0;
-        const HiBa = document.getElementById("Bandage");
-        HiBa.style.display = "none";
-        const HiPr = document.getElementById("Prestige");
-        HiPr.style.display = "none";
+        document.getElementById("Bandage").style.display = "none";
+        document.getElementById("Prestige").style.display = "none";
       </script>
       
     </head>
@@ -45,13 +43,10 @@
           document.getElementById("BloodLeft").innerHTML = `You have ${BloodLeft} blood left.`; //Changes the visible Blood value//
           
           if (BloodLeft <= 0) { //if all Blood is gone//
-            const HelBre = document.getElementById("Breathe");
-            HelBre.style.display = "none";
+            document.getElementById("Breathe").style.display = "none";
             document.getElementById("BloodLeft").innerHTML = `You have ${BloodLeft} blood left. As such, your life has ended.`;
-            const HelPre = document.getElementById("Prestige");
-            HelPre.style.display = "block";
-            const HelBan = document.getElementById("Bandage");
-            HelBan.style.display = "none";
+            document.getElementById("Prestige").style.display = "block";
+            document.getElementById("Bandage").style.display = "none";
           }
         }
 
@@ -70,10 +65,8 @@
           BloodLeft = 60;
           SecondsLived = 0;
           Bandages = 0;
-          const HelBre = document.getElementById("Breathe");
-          HelBre.style.display = "block";
-          const HelPre = document.getElementById("Prestige");
-          HelPre.style.display = "none";
+          document.getElementById("Breathe").style.display = "block";
+          document.getElementById("Prestige").style.display = "none";
         }
 
         document.getElementById("Breathe").addEventListener("click", BreatheBloodCost); //Updates Blood Drain//
