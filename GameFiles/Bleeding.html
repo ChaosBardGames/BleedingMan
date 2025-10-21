@@ -12,8 +12,10 @@
         let BloodDrain = PrestigeCount + 1;
         let SecondsLived = 0;
         let Bandages = 0;
-        document.getByElementId("Bandage").style.display = "none";
-        document.getByElementId("Prestige").style.display = "none";
+        const HiBa = document.getByElementId("Bandage");
+        HiBa.style.display = "none";
+        const HiPr = document.getByElementId("Prestige");
+        HiPr.style.display = "none";
       </script>
       
     </head>
@@ -34,7 +36,7 @@
         }
 
         const BandagingBloodCost = () => {
-          BloodCost = 5/BloodDrain; //The amount of blood lost while bandaging
+          BloodCost = 10/BloodDrain; //The amount of blood lost while bandaging
           SecondsLived = SecondsLived + 5;
         }
         
@@ -43,16 +45,20 @@
           document.getElementById("BloodLeft").innerHTML = `You have ${BloodLeft} blood left.`; //Changes the visible Blood value//
           
           if (BloodLeft <= 0) { //if all Blood is gone//
-            document.getElementById("Breathe").style.display = "none";
+            const HelBre = document.getElementById("Breathe");
+            HelBre.style.display = "none";
             document.getElementById("BloodLeft").innerHTML = `You have ${BloodLeft} blood left. As such, your life has ended.`;
-            document.getElementById("Prestige").style.display = "block";
-            document.getElementById("Bandage").style.display = "none";
+            const HelPre = document.getElementById("Prestige");
+            HelPre.style.display = "block";
+            const HelBan = document.getElementById("Bandage");
+            HelBan.style.display = "none";
           }
         }
 
         const Bandaging = () => {
           Bandages = Bandages + 1;
-          BloodDrain = PrestigeCount + (Bandages / 2) + 1;
+          const BlDr = PrestigeCount + (Bandages / 3) + 1;
+          BloodDrain = BlDr.toFixed(2);
         }
 
         const Prestige = () => {
@@ -60,12 +66,14 @@
           if (PrestigeCount >= 1) { //Gives upgrades based off prestige//
             document.getElementById("Bandage").style.display = "block";
           }
-          BloodDrain = PrestigeCount + 1;
+          BloodDrain = PrestigeCount.toFixed(2) + 1;
           BloodLeft = 60;
           SecondsLived = 0;
           Bandages = 0;
-          document.getElementByID("Breathe").style.display = "block";
-          document.getElementByID("Prestige").style.display = "none";
+          const HelBre = document.getElementByID("Breathe");
+          HelBre.style.display = "block";
+          const HelPre = document.getElementByID("Prestige");
+          HelPre.style.display = "none";
         }
 
         document.getElementById("Breathe").addEventListener("click", BreatheBloodCost); //Updates Blood Drain//
