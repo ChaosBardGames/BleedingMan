@@ -14,10 +14,13 @@
           let Bandages = 0;
           let TimesBreathed = 0;
           let TimesBandaged = 0;
+          let TimesFocused = 0;
+          let Focus = 0;
         function Launch() { //Hides Bandage, Wake Up Neo and the Will counter//
           document.getElementById("Bandage").style.display = "none";
           document.getElementById("Prestige").style.display = "none";
           document.getElementById("WillCounter").style.display = "none";
+          document.getElementById("Focus").style.display = "none";
         }
         window.onload = Launch;
       </script>
@@ -30,11 +33,13 @@
       
       <p id="BloodLeft">You have 60 blood left!</p>
       <p id="WillCounter">You have 0 Will!</p>
-      <button id="Breathe" class="Button">Breathe</button> <!--Breathing Button-->
+      <button id="Breathe" class="Button BloodSucker">Breathe</button> <!--Breathing Button-->
 
-      <button id="Bandage" class="Button">Bandage your wounds</button> <!--Bandaging Wounds Button-->
+      <button id="Bandage" class="Button BloodSucker">Bandage your wounds</button> <!--Bandaging Wounds Button-->
 
       <button id="Prestige" class="Button">Wake up Neo</button> <!--Rebirth Button-->
+
+      <button id="Focus" class="Button BloodSucker">Focus</button> <!--Focus Button-->
 
       <script>
         const BreatheBloodCost = () => { 
@@ -44,9 +49,15 @@
         }
 
         const BandagingBloodCost = () => {
-          BloodCost = ((10 * TimesBandaged) + 10)/BloodDrain; //The amount of blood lost while bandaging//
+          BloodCost = ((10 * TimesBandaged) + 10) / BloodDrain; //The amount of blood lost while bandaging//
           SecondsLived = SecondsLived + 10;
           TimesBandaged = TimesBandaged + 1;
+        }
+
+        const FocusBloodCost = () => {
+          BloodCost = (15 + (TimesFocused * 5)) / (BloodDrain * 2);
+          SecondsLived = SecondsLived + 5;
+          TimesFocused = TimesFocused + 1;
         }
         
         const BloodUpdate = () => {
@@ -69,10 +80,17 @@
           BloodDrain = BlDr.toFixed(2);
         }
 
+        const Focus = () => {
+          Focus = Focus + 1;
+        }
+
         const Prestige = () => {
-          Will = Will + (SecondsLived / 60);
-          if (Will >= 1) { //Gives upgrades based off prestige//
+          Will = Will + (SecondsLived / 60)(Focus + 1);
+          if (Will >= 1) { //Unlocks bandages//
             document.getElementById("Bandage").style.display = "block";
+          }
+          if (Will >= 10) { //Unlocks focus//
+            document.getElementById("Focus").style.display = "block";
           }
           BloodDrain = Will.toFixed(2) + 1; //Sets BloodDrain to its new value//
           BloodLeft = 60;      //Resets variables//
@@ -80,8 +98,9 @@
           Bandages = 0;
           TimesBreathed = 0;
           TimesBandaged = 0;
+          TimesFocused = 0;
           document.getElementById("Breathe").style.display = "block"; //Shows Breathe//
-          document.getElementById("Prestige").style.display = "none";
+          document.getElementById("Prestige").style.display = "none"; //Hides Prestige//
         }
 
         const Will = () => {
@@ -90,14 +109,16 @@
             document.getElementById("WillCounter").innerHTML = `You have ${WillCount} Will.`;
         }
 
+        document.getElementById("Focus").addEventListener("click", FocusBloodCost); //Updates Blood Drain//
         document.getElementById("Breathe").addEventListener("click", BreatheBloodCost); //Updates Blood Drain//
-        document.getElementById("Breathe").addEventListener("click", BloodUpdate); //Updates Blood Counter//
         document.getElementById("Prestige").addEventListener("click", Prestige); //Prestiges//
         document.getElementById("Bandage").addEventListener("click", BandagingBloodCost); //Updates Blood Drain//
-        document.getElementById("Bandage").addEventListener("click", BloodUpdate); //Updates Blood Counter//
+        
         document.getElementById("Bandage").addEventListener("click", Bandaging); //Updates Bandage #//
+        document.getElementById("Focus").addEventListener("click", Focusing): //Updates Focus #//
         
         document.getElementByClassName("Button").addEventListener("click", Will); //Updates Will Counter//
+        document.getElementByClassName("BloodSucker").addEventListener("click", BloodUpdate); //Updates Blood Counter//
       </script>
       
     </body>
