@@ -44,7 +44,7 @@
         }
 
         const BandagingBloodCost = () => {
-          BloodCost = (10 * TimesBandaged)/BloodDrain; //The amount of blood lost while bandaging//
+          BloodCost = ((10 * TimesBandaged) + 10)/BloodDrain; //The amount of blood lost while bandaging//
           SecondsLived = SecondsLived + 10;
           TimesBandaged = TimesBandaged + 1;
         }
