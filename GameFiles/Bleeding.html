@@ -8,18 +8,21 @@
       <script>
           let Bandages = 0; //Initializes Bandage variables//
           let TimesBandaged = 0;
-        
+
+          let BloodDrain = 1; //Initializes Blood variables//
           let BloodLeft = 60;
           let BloodCost = 0;
-          let Will = 0;
-          let BloodDrain = 1;
-          let SecondsLived = 0;
-          let TimesBreathed = 0;
-          let TimesLookedAround = 0;
-        
+
+          let TimesBreathed = 0; //Initializes Breathing variables//
+
           let TimesFocused = 0; //Initializes Focusing variables//
           let Focus = 0;
+
+          let TimesLookedAround = 0; //Initializes Location variables//
         
+          let Will = 0; //Initializes Will variables//
+          let SecondsLived = 0;
+                                  
         function Launch() { //Hides Bandage, Wake Up Neo and the Will counter//
           document.getElementById("Bandage").style.display = "none";
           document.getElementById("Prestige").style.display = "none";
