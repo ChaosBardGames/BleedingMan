@@ -26,6 +26,7 @@
           document.getElementById("WillCounter").style.display = "none";
           document.getElementById("Focus").style.display = "none";
           document.getElementById("LookAround").style.display = "none";
+          document.getElementById("Location").style.display= "none";
         }
         window.onload = Launch;
       </script>
@@ -38,6 +39,7 @@
       
       <p id="BloodLeft">You have 60 blood left!</p>
       <p id="WillCounter">You have 0 Will!</p>
+      <p id="Location"></p>
       <button id="Breathe" class="Button BloodSucker">Breathe</button> <!--Breathing Button-->
 
       <button id="Bandage" class="Button BloodSucker">Bandage your wounds</button> <!--Bandaging Wounds Button-->
@@ -71,6 +73,7 @@
           BloodCost = (20 + (TimesLookedAround * 15)) / (BloodDrain / 10);
           SecondsLived = SecondsLived + 20;
           TimesLookedAround = TimesLookedAround + 1;
+          Area();
         }
         
         const BloodUpdate = () => {
@@ -85,7 +88,7 @@
             document.getElementById("Prestige").style.display = "block";
             document.getElementById("Bandage").style.display = "none";
             document.getElementById("Focus").style.display = "none";
-            document.getElementById("LookAround").style.displat = "none";
+            document.getElementById("LookAround").style.display = "none";
           }
         }
 
@@ -128,6 +131,17 @@
           }
           if (Focus > 9) {
             document.getElementById("LookAround").style.disply = "block";
+          }
+        }
+
+        Area() {
+          if (TimesLookedAround = 1) {
+            document.getElementById("Location").style.display = "block";
+            document.getElementById("Location").innerHTML = `You're in a room with a load of bandages. There's no exit from your vantage point`;
+          }
+          
+          if (TimesLookedAround >= 2) {
+            document.getElementById("Location").innerHTML = `You're in a room with a load of bandages. There's an exit on this wall;
           }
         }
 
