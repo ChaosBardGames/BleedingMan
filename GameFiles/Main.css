@@ -23,3 +23,13 @@ body {
   overflow - x: hidden;
   height: 100%;
 }
+
+Left {
+  float: left;
+  background-color: rgb(33, 33, 230);
+}
+
+Right {
+  float: right;
+  background-color: rgb(33, 33, 230);
+}
