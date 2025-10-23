@@ -21,6 +21,7 @@
           let TimesLookedAround = 0; //Initializes Location variables//
         
           let Will = 0; //Initializes Will variables//
+          let MaxWill = 0;
           let SecondsLived = 0;
                                   
         function Launch() { //Hides Bandage, Wake Up Neo and the Will counter//
@@ -29,7 +30,7 @@
           document.getElementById("WillCounter").style.display = "none";
           document.getElementById("Focus").style.display = "none";
           document.getElementById("LookAround").style.display = "none";
-          document.getElementById("Location").style.display= "none";
+          document.getElementById("Location").style.display = "none";
         }
         window.onload = Launch;
       </script>
@@ -39,20 +40,25 @@
 
     
     <body>
-      
-      <p id="BloodLeft">You have 60 blood left!</p>
-      <p id="WillCounter">You have 0 Will!</p>
-      <p id="Location"></p>
-      <button id="Breathe" class="Button BloodSucker">Breathe</button> <!--Breathing Button-->
 
-      <button id="Bandage" class="Button BloodSucker">Bandage your wounds</button> <!--Bandaging Wounds Button-->
+      <div class="Left">
+        <p id="BloodLeft">You have 60 blood left!</p>
+        <p id="WillCounter">You have 0 Will!</p>
+        <p id="Location"></p>
+      </div>
+        <button id="Breathe" class="Button BloodSucker">Breathe</button> <!--Breathing Button-->
 
-      <button id="Prestige" class="Button">Wake up Neo</button> <!--Rebirth Button-->
+        <button id="Bandage" class="Button BloodSucker">Bandage your wounds</button> <!--Bandaging Wounds Button-->
 
-      <button id="Focus" class="Button BloodSucker">Focus</button> <!--Focus Button-->
+        <button id="Prestige" class="Button">Wake up Neo</button> <!--Rebirth Button-->
 
-      <button id="LookAround" class="Button BloodSucker">Look Around</button> <!--Looking Around Button-->
+        <button id="Focus" class="Button BloodSucker">Focus</button> <!--Focus Button-->
 
+        <button id="LookAround" class="Button BloodSucker">Look Around</button> <!--Looking Around Button-->
+      <divclass="Right">
+        <p id="MaxWillCounter">You have had at most 0 Will!</p>
+      </div>
+        
       <script>
         const BreatheBloodCost = () => { 
           BloodCost = (1 + TimesBreathed)/BloodDrain; //The amount of blood lost while breathing//
@@ -107,10 +113,15 @@
 
         const Prestige = () => {
           Will = Will + (SecondsLived / 60)(Focus + 1);
-          if (Will >= 1) { //Unlocks bandages//
+          
+          if (MaxWill < Will) { //Sets will to max will//
+            MaxWill = Will;
+            document.getElementById("MaxWillCounter").innerHTML = `You've had at most ${MaxWill} Will!`;
+          }
+          if (MaxWill >= 1) { //Unlocks bandages//
             document.getElementById("Bandage").style.display = "block";
           }
-          if (Will >= 10) { //Unlocks focus//
+          if (MaxWill >= 10) { //Unlocks focus//
             document.getElementById("Focus").style.display = "block";
           }
           if (Focus > 9) {
