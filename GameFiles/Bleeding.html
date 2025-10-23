@@ -84,7 +84,7 @@
         }
         
         const BloodUpdate = () => {
-          BloodLeft = BloodLeft - BloodCost; //Decrements Blood based on BloodCost//
+          BloodLeft = (BloodLeft - BloodCost); //Decrements Blood based on BloodCost//
           BloodLeft = BloodLeft.toFixed(2); //Rounds Blood to two decimal places//
           document.getElementById("BloodLeft").innerHTML = `You have ${BloodLeft} Blood left.`; //Changes the visible Blood value//
           
@@ -146,7 +146,7 @@
           }
         }
 
-        Area() {
+        const Area() => {
           if (TimesLookedAround = 1) {
             document.getElementById("Location").style.display = "block";
             document.getElementById("Location").innerHTML = `You're in a room with a load of bandages. There's no exit from your vantage point`;
